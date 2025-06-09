@@ -32,4 +32,89 @@
     h1 {
       color: #333;
       font-size: 1.5em;
-      mar
+      margin: 0;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      padding: 7px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="logo">LOGO</div>
+    <h1>Calculadora de Banner/Lona</h1>
+  </header>
+
+  <label for="largura">Largura (cm):</label>
+  <input type="number" id="largura" value="100" min="0" />
+
+  <label for="altura">Altura (cm):</label>
+  <input type="number" id="altura" value="50" min="0" />
+
+  <label for="tipoPreco">Tipo de preço:</label>
+  <select id="tipoPreco">
+    <option value="final">Valor final</option>
+    <option value="revenda">Valor de revenda</option>
+  </select>
+
+  <label for="acabamento">Tipo de acabamento:</label>
+  <select id="acabamento">
+    <option value="semIlhos">Sem ilhós</option>
+    <option value="comIlhos">Com ilhós</option>
+  </select>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div id="resultado">Valor total: R$ --</div>
+
+  <script>
+    function calcular() {
+      const largura = parseFloat(document.getElementById('largura').value) || 0;
+      const altura = parseFloat(document.getElementById('altura').value) || 0;
+      const tipoPreco = document.getElementById('tipoPreco').value;
+      const acabamento = document.getElementById('acabamento').value;
+
+      const area = (largura * altura) / 10000;
+      
+      let precoPorMetro = 0;
+      if (tipoPreco === 'final') {
+        precoPorMetro = (acabamento === 'semIlhos') ? 90 : 98;
+      } else if (tipoPreco === 'revenda') {
+        precoPorMetro = (acabamento === 'semIlhos') ? 50 : 65;
+      }
+
+      let total = precoPorMetro * area;
+      if (total < 30) total = 30;
+
+      document.getElementById('resultado').innerText = 'Valor total: R$ ' + total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
