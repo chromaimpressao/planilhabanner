@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Calculadora de Banner/Lona</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f5;
       padding: 20px;
-      max-width: 400px;
+      max-width: 500px;
       margin: auto;
     }
     header {
@@ -17,17 +18,8 @@
       margin-bottom: 20px;
     }
     #logo {
-      width: 50px;
       height: 50px;
-      background: #ddd;
-      border-radius: 5px;
       margin-right: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #666;
-      font-size: 12px;
     }
     h1 {
       color: #333;
@@ -68,7 +60,7 @@
 </head>
 <body>
   <header>
-    <div id="logo">LOGO</div>
+    <img id="logo" src="logo chroma preto.png" alt="Logo Chroma" />
     <h1>Calculadora de Banner/Lona</h1>
   </header>
 
@@ -86,8 +78,8 @@
 
   <label for="acabamento">Tipo de acabamento:</label>
   <select id="acabamento">
-    <option value="semIlhos">Sem ilhós</option>
-    <option value="comIlhos">Com ilhós</option>
+    <option value="sem">Sem ilhós</option>
+    <option value="com">Com ilhós</option>
   </select>
 
   <button onclick="calcular()">Calcular</button>
@@ -102,15 +94,15 @@
       const acabamento = document.getElementById('acabamento').value;
 
       const area = (largura * altura) / 10000;
-      
-      let precoPorMetro = 0;
+
+      let preco = 0;
       if (tipoPreco === 'final') {
-        precoPorMetro = (acabamento === 'semIlhos') ? 90 : 98;
-      } else if (tipoPreco === 'revenda') {
-        precoPorMetro = (acabamento === 'semIlhos') ? 50 : 65;
+        preco = acabamento === 'sem' ? 90 : 98;
+      } else {
+        preco = acabamento === 'sem' ? 50 : 65;
       }
 
-      let total = precoPorMetro * area;
+      let total = preco * area;
       if (total < 30) total = 30;
 
       document.getElementById('resultado').innerText = 'Valor total: R$ ' + total.toFixed(2);
